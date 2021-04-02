@@ -152,7 +152,7 @@ void virusDestructor(virus* vir)
 }
 
 /* Free the memory allocated by the list. */
-void list_free(link *virus_list)
+link* list_free(link *virus_list)
 {
   if(virus_list != NULL)
   {
@@ -160,7 +160,9 @@ void list_free(link *virus_list)
     free(virus_list -> vir);
     list_free(virus_list -> nextVirus);
     free(virus_list);
+    virus_list = NULL;
   }
+  return virus_list;
 }
 
 
@@ -174,7 +176,7 @@ link* loadSignatures(char* suspectedFileName,link* viruses)
   char fileName[fileNameSize];
 
   if(viruses != NULL)
-    list_free(viruses);
+    viruses = list_free(viruses);
   printf("please enter the signature file name\n");
   if(fgets(fileName,fileNameSize,stdin) != NULL)
   {
