@@ -180,7 +180,7 @@ link* loadSignatures(link* viruses)
   char fileName[fileNameSize];
 
   if(viruses != NULL)
-    virus_list = list_free(viruses);
+    viruses = list_free(viruses);
   printf("please enter the signature file name\n");
   if(fgets(fileName,fileNameSize,stdin) != NULL)
   {
